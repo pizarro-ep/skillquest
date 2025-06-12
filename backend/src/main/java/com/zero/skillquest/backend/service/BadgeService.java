@@ -1,7 +1,6 @@
 package com.zero.skillquest.backend.service;
 
 import com.zero.skillquest.backend.entity.Badge;
-import com.zero.skillquest.backend.entity.User;
 import com.zero.skillquest.backend.repository.IBadgeRepository;
 
 import lombok.RequiredArgsConstructor;

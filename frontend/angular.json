@@ -24,6 +24,9 @@
             "styles": [
               "src/styles.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src"]
+            },
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -86,5 +89,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "70560e18-e5a0-477b-a110-13160ec4a00f"
   }
 }
