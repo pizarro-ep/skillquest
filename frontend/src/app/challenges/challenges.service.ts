@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
+import { Challenges } from './challenges';
 
 @Injectable({ providedIn: 'root' })
 export class ChallengeService {
@@ -8,9 +10,7 @@ export class ChallengeService {
 
   constructor(private http: HttpClient) {}
 
-  getChallenges(token: string) {
-    return this.http.get<[]>(this.apiUrl, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+  getChallenges(token: string):Observable<any> {
+    return this.http.get<Challenges[]>(this.apiUrl, {headers: { Authorization: `Bearer ${token}` }});
   }
 }

@@ -1,24 +1,30 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { ChangeDetectorRef, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ChallengeService } from '../challenges.service';
+import { Challenges } from '../challenges';
 
 @Component({
   selector: 'app-list',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './list.html'
 })
 export class ChallengesListComponent implements OnInit {
+  challenges: Challenges[] = [];
 
   constructor(
-    private challengeService: ChallengeService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private challengeService: ChallengeService
   ) {}
 
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem('token') || '';
-      this.challengeService.getChallenges(token).subscribe(res => {
-        console.log(res);
+  ngOnInit():void {
+      const token = this.getData("token");
+      this.challengeService.getChallenges(token).subscribe((res: any) => {
+        this.challenges = res as any[];
+        console.table(this.challenges);
       });
-    }
+  }
+
+  public getData(key: string) {
+    return localStorage.getItem(key) ?? ''
   }
 }

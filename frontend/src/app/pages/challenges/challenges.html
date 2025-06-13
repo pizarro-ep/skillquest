@@ -7,10 +7,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let challenge of challenges">
+        @for(challenge of challenges$ | async; track challenge.id){
+        <tr>
             <td>{{ challenge.id }}</td>
             <td>{{ challenge.title }}</td>
             <td>{{ challenge.description }}</td>
         </tr>
+        }
     </tbody>
 </table>
